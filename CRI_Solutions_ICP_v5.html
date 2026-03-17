@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRI Solutions · Ideal Client Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2D4F;
+    --orange: #C4832A;
+    --body-text: #2C2C2C;
+    --muted: #6B7280;
+    --card-bg: #F2F2F2;
+    --border: #E5E7EB;
+    --green: #27AE60;
+    --amber: #E67E22;
+    --red: #C0392B;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; color: var(--body-text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 920px; margin: 0 auto; padding: 48px 52px; }
+
+  /* HEADER */
+  .header { display: flex; align-items: center; gap: 18px; margin-bottom: 8px; }
+  .header-logo { height: 52px; width: auto; }
+  .header-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; color: var(--navy); letter-spacing: 0.04em; border-bottom: 2px solid var(--orange); padding-bottom: 3px; line-height: 1.2; }
+  .header-sub { font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+  .doc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 34px; color: var(--navy); margin-top: 36px; margin-bottom: 6px; line-height: 1.15; }
+  .doc-subtitle { font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 32px; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 34px 0; }
+
+  /* SECTION HEADINGS */
+  .section-label { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px; }
+  .section-label::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, var(--orange), transparent); border-radius: 1px; }
+  .section-heading { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; color: var(--navy); margin-bottom: 16px; line-height: 1.3; }
+
+  /* SNAPSHOT */
+  .snapshot-text { font-size: 15px; line-height: 1.7; color: var(--body-text); max-width: 780px; }
+
+  /* SERNON CALLOUT - design fix #3: proper callout card */
+  .sernon-callout { margin-top: 16px; background: var(--card-bg); border-left: 4px solid var(--orange); border-radius: 0 6px 6px 0; padding: 16px 20px; font-size: 13px; color: var(--body-text); line-height: 1.55; }
+  .sernon-callout strong { color: var(--orange); font-weight: 700; }
+
+  /* TRAFFIC LIGHT */
+  .traffic-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 6px; }
+  .tl-card { background: var(--card-bg); border-radius: 6px; overflow: hidden; }
+  .tl-bar { height: 5px; }
+  .tl-bar--green { background: var(--green); }
+  .tl-bar--amber { background: var(--amber); }
+  .tl-bar--red { background: var(--red); }
+  .tl-header { padding: 14px 18px 0; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+  .tl-header--green { color: var(--green); }
+  .tl-header--amber { color: var(--amber); }
+  .tl-header--red { color: var(--red); }
+  .tl-body { padding: 8px 18px 16px; }
+  .tl-body li { font-size: 12.5px; line-height: 1.55; color: var(--body-text); margin-bottom: 5px; padding-left: 14px; position: relative; list-style: none; }
+  .tl-body li::before { content: ''; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; }
+  .tl-card:nth-child(1) .tl-body li::before { background: var(--green); }
+  .tl-card:nth-child(2) .tl-body li::before { background: var(--amber); }
+  .tl-card:nth-child(3) .tl-body li::before { background: var(--red); }
+  .tl-action { margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(230,126,34,0.2); font-size: 11.5px; font-style: italic; color: var(--amber); line-height: 1.5; }
+
+  /* QUALIFYING QUESTIONS - design fix #2: larger numbered badges */
+  .qq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .qq-item { background: var(--card-bg); border-radius: 6px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; }
+  .qq-badge { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--white); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .qq-content { flex: 1; }
+  .qq-question { font-size: 13.5px; font-weight: 600; color: var(--navy); line-height: 1.45; margin-bottom: 5px; }
+  .qq-purpose { font-size: 12px; font-style: italic; color: var(--muted); line-height: 1.5; }
+
+  /* SCORING RULE - sales fix #1 */
+  .scoring-rule { margin-top: 16px; background: var(--navy); border-radius: 6px; padding: 16px 22px; display: flex; gap: 24px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .scoring-item { text-align: center; color: var(--white); font-size: 13px; font-weight: 600; line-height: 1.4; }
+  .scoring-item .num { font-size: 22px; font-weight: 700; display: block; }
+  .scoring-item .num--green { color: var(--green); }
+  .scoring-item .num--amber { color: var(--amber); }
+  .scoring-item .num--red { color: var(--red); }
+  .scoring-sep { color: rgba(255,255,255,0.3); font-size: 20px; }
+
+  /* VALUE ANCHOR - design fix #1: stacked layout */
+  .value-intro { font-size: 12.5px; color: var(--muted); font-style: italic; line-height: 1.55; margin-bottom: 14px; }
+  .value-stack { display: flex; flex-direction: column; gap: 14px; }
+  .value-card { background: var(--card-bg); border-radius: 6px; padding: 20px 24px; border-left: 4px solid var(--orange); display: flex; gap: 20px; align-items: flex-start; }
+  .value-label { font-size: 13px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; min-width: 130px; flex-shrink: 0; padding-top: 2px; }
+  .value-text { font-size: 13px; line-height: 1.65; color: var(--body-text); }
+  .value-text .highlight { font-weight: 700; color: var(--orange); }
+
+  /* SAVINGS ANCHOR - sales fix #2 */
+  .savings-anchor { margin-top: 12px; text-align: center; padding: 12px 20px; background: var(--navy); border-radius: 6px; }
+  .savings-anchor span { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.02em; }
+  .savings-anchor span em { color: var(--orange); font-style: normal; }
+
+  /* COMMITMENT */
+  .commitment-box { background: var(--card-bg); border-left: 4px solid var(--navy); border-radius: 0 6px 6px 0; padding: 18px 22px; margin-top: 6px; }
+  .commitment-box p { font-size: 13.5px; line-height: 1.65; color: var(--body-text); }
+  .commitment-box strong { color: var(--navy); }
+
+  /* OBJECTION HANDLER - sales fix #3 */
+  .objection-box { margin-top: 10px; background: var(--card-bg); border-left: 4px solid var(--orange); border-radius: 0 6px 6px 0; padding: 16px 20px; }
+  .objection-box .ob-label { font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+  .objection-box .ob-text { font-size: 13px; font-style: italic; color: var(--body-text); line-height: 1.6; }
+
+  .onboarding-note { margin-top: 10px; background: var(--card-bg); border-radius: 6px; padding: 14px 18px; font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+  .onboarding-note strong { color: var(--body-text); }
+
+  /* REFERRAL / NETWORK */
+  .referral-intro { font-size: 12.5px; color: var(--muted); font-style: italic; line-height: 1.55; margin-bottom: 12px; }
+  .referral-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .referral-card { background: var(--card-bg); border-radius: 6px; padding: 18px 18px 16px; }
+  .referral-card--primary { border-left: 3px solid var(--orange); }
+  .referral-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--white); background: var(--orange); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
+  .referral-tag--navy { background: var(--navy); }
+  .referral-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .referral-text { font-size: 12.5px; line-height: 1.6; color: var(--body-text); }
+  .referral-text strong { color: var(--navy); }
+  .referral-pitch { font-size: 12px; font-style: italic; color: var(--muted); margin-top: 8px; line-height: 1.55; border-left: 2px solid var(--orange); padding-left: 10px; }
+
+  /* SECTION 07 CARDS - design fix #5: bottom border to distinguish from 06 */
+  .referral-card--build { border-bottom: 3px solid var(--navy); }
+
+  /* NEXT STEP - sales fix #5 */
+  .next-step { margin-top: 34px; background: var(--navy); border-radius: 6px; padding: 20px 24px; }
+  .next-step-label { font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px; }
+  .next-step-text { font-size: 14px; color: var(--white); line-height: 1.6; font-weight: 500; }
+
+  /* FOOTER */
+  .footer { margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-text { font-size: 10.5px; color: var(--muted); }
+  .footer-mark { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 12px; color: var(--navy); }
+
+  @media print {
+    @page { size: A4; margin: 14mm 16mm; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 0; max-width: 100%; }
+    .doc-title { font-size: 26px; margin-top: 20px; }
+    .section-heading { font-size: 18px; }
+    .divider { margin: 18px 0; }
+    .traffic-grid, .referral-grid { gap: 10px; }
+    .tl-body li { font-size: 11px; }
+    .qq-item { padding: 10px 12px; }
+    .value-card { padding: 14px 16px; }
+    .commitment-box { padding: 12px 16px; }
+    .footer { margin-top: 16px; }
+    .scoring-rule { padding: 12px 16px; }
+    .next-step { padding: 14px 18px; margin-top: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <img class="header-logo" src="data:image/png;base64,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" alt="CRI Solutions">
+    <div>
+      <div class="header-brand">CRI SOLUTIONS</div>
+      <div class="header-sub">Fractional CFO &amp; Finance Function Services</div>
+    </div>
+  </div>
+
+  <h1 class="doc-title">Ideal Client Profile</h1>
+  <p class="doc-subtitle">Internal qualification tool &middot; who to pursue, who to avoid, and how to tell in 60 seconds.</p>
+
+  <div class="divider"></div>
+
+  <!-- 01 SNAPSHOT -->
+  <div class="section-label">01 &middot; The Snapshot</div>
+  <h2 class="section-heading">Who We&rsquo;re Going After</h2>
+  <p class="snapshot-text">Our ideal client is an Irish SME doing &euro;1M&ndash;&euro;10M in revenue that has outgrown its finance function. The founder is still managing the numbers themselves &ndash; or relying on one junior person &ndash; and knows it&rsquo;s a problem but hasn&rsquo;t solved it because hiring a full-time Finance Director feels too expensive. They already have an external accountant for year-end filing and make decisions fast without a board.</p>
+  <div class="sernon-callout"><strong>Sernon lens:</strong> Every GREEN CRI client is a potential Sernon client. If the founder is accumulating personal wealth, equity, or property &ndash; flag it. A CRI engagement that converts to a Sernon relationship is the ideal outcome across both businesses.</div>
+
+  <div class="divider"></div>
+
+  <!-- 02 TRAFFIC LIGHT -->
+  <div class="section-label">02 &middot; Qualification Criteria</div>
+  <h2 class="section-heading">Traffic Light Assessment</h2>
+  <div class="traffic-grid">
+    <div class="tl-card">
+      <div class="tl-bar tl-bar--green"></div>
+      <div class="tl-header tl-header--green">Green &ndash; Pursue</div>
+      <ul class="tl-body">
+        <li>Annual revenue &euro;1M&ndash;&euro;10M</li>
+        <li>Growing fast, finance behind the curve</li>
+        <li>No finance hire or only a junior bookkeeper</li>
+        <li>Founder-led, single fast decision maker</li>
+        <li>Existing external accountant in place</li>
+        <li>Net profit &ge; &euro;100k (comfortably sustains &euro;3k+/month)</li>
+        <li>Services, tech, construction, or trades</li>
+        <li>Ireland-based or remote-friendly</li>
+      </ul>
+    </div>
+    <div class="tl-card">
+      <div class="tl-bar tl-bar--amber"></div>
+      <div class="tl-header tl-header--amber">Amber &ndash; Qualify Further</div>
+      <ul class="tl-body">
+        <li>Revenue under &euro;1M but high growth trajectory</li>
+        <li>Part-time finance person already in place</li>
+        <li>Manufacturing sector</li>
+        <li>Heavy physical presence required</li>
+        <li>Decision making involves multiple stakeholders or a board</li>
+      </ul>
+      <div class="tl-action">Action: Book a discovery call to clarify. If 2+ AMBER criteria remain unresolved after that call, downgrade to RED and move on.</div>
+    </div>
+    <div class="tl-card">
+      <div class="tl-bar tl-bar--red"></div>
+      <div class="tl-header tl-header--red">Red &ndash; Do Not Pursue</div>
+      <ul class="tl-body">
+        <li>Under &euro;1M revenue with no growth path</li>
+        <li>Net profit under &euro;40k annually</li>
+        <li>Wants bookkeeping / invoicing only</li>
+        <li>Wants annual accounts prepared only</li>
+        <li>No existing accountant (too early stage)</li>
+        <li>Requires full-time on-site presence</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 03 QUALIFYING QUESTIONS with badge numbers + scoring rule -->
+  <div class="section-label">03 &middot; Qualifying Questions</div>
+  <h2 class="section-heading">First Conversation &ndash; Eight Questions</h2>
+  <div class="qq-grid">
+    <div class="qq-item"><div class="qq-badge">1</div><div class="qq-content"><div class="qq-question">&ldquo;How is your finance function set up at the moment?&rdquo;</div><div class="qq-purpose">Listening for: no dedicated hire, founder doing it themselves, or one junior person &ndash; this is the green flag.</div></div></div>
+    <div class="qq-item"><div class="qq-badge">2</div><div class="qq-content"><div class="qq-question">&ldquo;What does your turnover look like this year compared to last year?&rdquo;</div><div class="qq-purpose">Listening for: growth trajectory &ndash; fast-growing businesses are the target. Flat or declining revenue is a red flag.</div></div></div>
+    <div class="qq-item"><div class="qq-badge">3</div><div class="qq-content"><div class="qq-question">&ldquo;When did you last have a clear picture of your monthly numbers?&rdquo;</div><div class="qq-purpose">Listening for: pain &ndash; if they hesitate or say &ldquo;not recently&rdquo; or &ldquo;the accountant does it at year end&rdquo;, that&rsquo;s the problem CRI solves.</div></div></div>
+    <div class="qq-item"><div class="qq-badge">4</div><div class="qq-content"><div class="qq-question">&ldquo;How&rsquo;s the business performing &ndash; are you comfortable with where the margins are?&rdquo;</div><div class="qq-purpose">Listening for: ability to pay &ndash; surfaces profitability early before you invest time reviewing accounts. If they hesitate or signal thin margins, probe further before progressing.</div></div></div>
+    <div class="qq-item"><div class="qq-badge">5</div><div class="qq-content"><div class="qq-question">&ldquo;Have you looked at bringing someone in-house for finance?&rdquo;</div><div class="qq-purpose">Listening for: awareness of the problem and the cost barrier &ndash; &ldquo;yeah but it&rsquo;s expensive&rdquo; is exactly the door CRI walks through.</div></div></div>
+    <div class="qq-item"><div class="qq-badge">6</div><div class="qq-content"><div class="qq-question">&ldquo;Who handles your year-end accounts at the moment?&rdquo;</div><div class="qq-purpose">Listening for: existing accountant relationship &ndash; confirms they are established and identifies a potential referral source.</div></div></div>
+    <div class="qq-item"><div class="qq-badge">7</div><div class="qq-content"><div class="qq-question">&ldquo;How many people are in the business at the moment?&rdquo;</div><div class="qq-purpose">Listening for: small team, lean headcount &ndash; confirms they haven&rsquo;t built out a finance function internally.</div></div></div>
+    <div class="qq-item"><div class="qq-badge">8</div><div class="qq-content"><div class="qq-question">&ldquo;Are you the one making the call on something like this?&rdquo;</div><div class="qq-purpose">Listening for: single decision maker &ndash; if there&rsquo;s a board or multiple partners the sales cycle gets complicated fast.</div></div></div>
+  </div>
+
+  <!-- SCORING RULE -->
+  <div class="scoring-rule">
+    <div class="scoring-item"><span class="num num--green">5+</span> green signals = pursue</div>
+    <div class="scoring-sep">&vert;</div>
+    <div class="scoring-item"><span class="num num--amber">Mixed</span> = book a second call</div>
+    <div class="scoring-sep">&vert;</div>
+    <div class="scoring-item"><span class="num num--red">3+</span> red flags = walk away</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 04 WHY CRI - stacked layout + savings anchor -->
+  <div class="section-label">04 &middot; Why CRI</div>
+  <h2 class="section-heading">Three Points to Land</h2>
+  <p class="value-intro">These are the three arguments that close. Land all three in every first conversation.</p>
+  <div class="value-stack">
+    <div class="value-card">
+      <div class="value-label">Cost</div>
+      <p class="value-text">&ldquo;A full-time Finance Director will cost you <span class="highlight">&euro;100k&ndash;&euro;120k</span> all-in once you factor in salary, employer PRSI, and benefits. With us, you get a full finance team &ndash; CFOs, financial controllers, strategic oversight &ndash; for <span class="highlight">&euro;36k a year</span>. And if it doesn&rsquo;t work, you&rsquo;re not stuck with a hire.&rdquo;</p>
+    </div>
+    <div class="value-card">
+      <div class="value-label">Continuity</div>
+      <p class="value-text">&ldquo;We don&rsquo;t just do a project and disappear. The longer we work with you, the better it gets &ndash; we learn your business, your cashflow patterns, your risks. After six months, we know your numbers as well as you do. There&rsquo;s no handover, no starting from scratch, no knowledge walking out the door.&rdquo;</p>
+    </div>
+    <div class="value-card">
+      <div class="value-label">Team Depth</div>
+      <p class="value-text">&ldquo;Most people in this space are a one-man band. If that person gets sick or moves on, you&rsquo;re back to square one. With CRI, you get a team &ndash; I handle the strategy, Hesh runs the numbers day-to-day, and there&rsquo;s always someone across your account. You&rsquo;re never dependent on one person. And this isn&rsquo;t a team of juniors &ndash; we&rsquo;re Deloitte and KPMG trained, with over 70 years of combined experience between us. You&rsquo;re getting Big 4 calibre for a fraction of the cost.&rdquo;</p>
+    </div>
+  </div>
+  <div class="savings-anchor"><span>Save <em>&euro;84,000</em> in year one.</span></div>
+
+  <div class="divider"></div>
+
+  <!-- 05 COMMITMENT + objection handler -->
+  <div class="section-label">05 &middot; Engagement Filter</div>
+  <h2 class="section-heading">The 3-Month Commitment Rule</h2>
+  <div class="commitment-box"><p><strong>Minimum 3-month Letter of Engagement &ndash; non-negotiable.</strong> If a prospect wants to &ldquo;try one month&rdquo; or won&rsquo;t commit to 3 months, they are not a fit. This protects CRI&rsquo;s investment in the initial deep-dive phase. Minimum engagement value: &euro;9,000.</p></div>
+  <div class="objection-box">
+    <div class="ob-label">If they push back</div>
+    <div class="ob-text">&ldquo;The first three months is when we do the heavy lifting. It takes that long to properly understand your numbers. After that, you&rsquo;ll wonder how you managed without us.&rdquo;</div>
+  </div>
+  <div class="onboarding-note"><strong>Onboarding reality:</strong> Expect 1&ndash;3 months from signed LOE to fully operational, depending on the state of the client&rsquo;s books. Messy books = longer ramp. Set this expectation with the client upfront &ndash; it avoids frustration and protects the relationship during the deep-dive phase.</div>
+
+  <div class="divider"></div>
+
+  <!-- 06 NETWORK ACTIVATION - tags on all 3 cards + deadline -->
+  <div class="section-label">06 &middot; Network Activation</div>
+  <h2 class="section-heading">Where Clients Actually Come From</h2>
+  <p class="referral-intro">Every CRI client to date has come from someone on the team&rsquo;s personal network. This is the primary pipeline source &ndash; treat it deliberately, not accidentally.</p>
+  <div class="referral-grid">
+    <div class="referral-card referral-card--primary">
+      <span class="referral-tag">Do This Quarterly</span>
+      <div class="referral-name">The Exercise</div>
+      <p class="referral-text">Each team member (Simon, Luke, Eamon) sits down and reviews their personal and professional network &ndash; LinkedIn, phone contacts, GAA, events, old colleagues. One question: <strong>&ldquo;Who do I already know that&rsquo;s running a business doing &euro;1M+ who&rsquo;s probably struggling with their finance function?&rdquo;</strong></p>
+      <p class="referral-pitch">Target: each person identifies 10&ndash;15 contacts per quarter. Log them straight into the pipeline tracker. First round: within 2 weeks of receiving this document.</p>
+    </div>
+    <div class="referral-card">
+      <span class="referral-tag referral-tag--navy">Conversation Script</span>
+      <div class="referral-name">How to Approach</div>
+      <p class="referral-text">These are people who already know and trust you. This is not cold outreach &ndash; it&rsquo;s a conversation with someone you have a relationship with. Open with genuine interest in their business, then steer naturally toward how they&rsquo;re managing the finance side.</p>
+      <p class="referral-pitch">&ldquo;I was thinking about you &ndash; how&rsquo;s the business going? Are you still doing the books yourself or have you sorted that out?&rdquo;</p>
+    </div>
+    <div class="referral-card">
+      <span class="referral-tag referral-tag--navy">Ownership Map</span>
+      <div class="referral-name">Who Owns What</div>
+      <p class="referral-text"><strong>Simon:</strong> Irish business network, football contacts, direct relationships.<br><strong>Luke:</strong> UK connections, LinkedIn network, tech/software contacts.<br><strong>Eamon &amp; Hesh:</strong> Operational and delivery-side relationships.</p>
+      <p class="referral-pitch">Play to each person&rsquo;s strengths. Luke opens doors, Simon closes. Eamon &amp; Hesh manage relationships where trust and patience matter.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 07 REFERRAL CHANNELS - bottom-border cards to distinguish from 06 -->
+  <div class="section-label">07 &middot; Referral Channels</div>
+  <h2 class="section-heading">The Medium-Term Build</h2>
+  <p class="referral-intro">These channels need relationship-building before they produce leads. Start developing them now &ndash; they become the pipeline engine once the personal network is systematically worked.</p>
+  <div class="referral-grid">
+    <div class="referral-card referral-card--build">
+      <div class="referral-name">Accountancy Firms</div>
+      <p class="referral-text">Approach the partner directly. Position CRI as additive &ndash; not a threat. CRI handles the ongoing finance function; the accountant keeps year-end filing and stays the trusted advisor.</p>
+      <p class="referral-pitch">&ldquo;Your clients who&rsquo;ve grown quickly probably need more than a year-end visit. We handle everything in between &ndash; you stay as their accountant.&rdquo;</p>
+    </div>
+    <div class="referral-card referral-card--build">
+      <div class="referral-name">Solicitors</div>
+      <p class="referral-text">They see business transactions, disputes, and growth events. Any client going through a fundraise, acquisition, or rapid expansion likely needs a finance function. Warm introduction request only.</p>
+      <p class="referral-pitch">Ask for introductions to clients navigating growth, transactions, or expansion. Do not cold-approach.</p>
+    </div>
+    <div class="referral-card referral-card--build">
+      <div class="referral-name">Existing Clients</div>
+      <p class="referral-text">Ask directly: &ldquo;Do you know any other founders in a similar position to where you were when we started?&rdquo; Time this after the first meaningful win is delivered &ndash; not before.</p>
+      <p class="referral-pitch">Only ask once CRI has demonstrated tangible value. The client needs to have something specific to point to.</p>
+    </div>
+  </div>
+
+  <!-- NEXT STEP -->
+  <div class="next-step">
+    <div class="next-step-label">Next Step</div>
+    <div class="next-step-text">Simon to complete the network exercise (Section 06) and book a working session with Padraic to review the first pipeline list and prioritise outreach.</div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-text">CRI Solutions &ndash; Fractional CFO &amp; Finance Function &nbsp;|&nbsp; Prepared by Padraic Cunningham &ndash; March 2026 &nbsp;|&nbsp; Internal use only</span>
+    <span class="footer-mark">CRI SOLUTIONS</span>
+  </div>
+
+</div>
+</body>
+</html>
